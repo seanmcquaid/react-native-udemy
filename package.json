@@ -1,32 +1,27 @@
 {
-  "name": "reactNativeUdemy",
-  "version": "0.0.1",
+  "name": "rn-course",
+  "version": "0.1.0",
   "private": true,
+  "devDependencies": {
+    "babel-preset-react-native-stage-0": "^1.0.1",
+    "jest-expo": "^22.0.0",
+    "react-test-renderer": "16.0.0-beta.5"
+  },
   "scripts": {
     "start": "react-native start",
-    "test": "jest",
-    "lint": "eslint ."
-  },
-  "dependencies": {
-    "react": "16.8.6",
-    "react-native": "0.60.4",
-    "react-native-autolink": "^1.8.1",
-    "react-native-navigation": "^2.26.0",
-    "react-native-vector-icons": "^6.6.0",
-    "react-redux": "^7.1.0",
-    "redux": "^4.0.4"
-  },
-  "devDependencies": {
-    "@babel/core": "7.5.4",
-    "@babel/runtime": "7.5.4",
-    "@react-native-community/eslint-config": "0.0.3",
-    "babel-jest": "24.8.0",
-    "eslint": "6.0.1",
-    "jest": "24.8.0",
-    "metro-react-native-babel-preset": "0.54.1",
-    "react-test-renderer": "16.8.6"
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
+    "test": "node node_modules/jest/bin/jest.js --watch"
   },
   "jest": {
-    "preset": "react-native"
+    "preset": "jest-expo"
+  },
+  "dependencies": {
+    "react": "16.0.0-beta.5",
+    "react-native": "^0.49.5",
+    "react-native-navigation": "^1.1.277",
+    "react-native-vector-icons": "^4.4.2",
+    "react-redux": "^5.0.6",
+    "redux": "^3.7.2"
   }
 }
