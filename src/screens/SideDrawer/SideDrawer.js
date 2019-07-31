@@ -4,8 +4,8 @@ import {
   Text,
   Dimensions,
   StyleSheet,
-  Platform,
-  TouchableOpacity
+  TouchableOpacity,
+  Platform
 } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 
