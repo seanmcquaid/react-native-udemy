@@ -1,4 +1,7 @@
 {
-  "name": "reactNativeUdemy",
-  "displayName": "reactNativeUdemy"
+  "expo": {
+    "sdkVersion": "22.0.0"
+  },
+  "name": "rncourse",
+  "displayName": "Awesome Places"
 }
