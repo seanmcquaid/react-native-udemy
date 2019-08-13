@@ -5,7 +5,7 @@ const fs = require("fs");
 const UUID = require("uuid-v4");
 
 const gcconfig = {
-  projectId: "YOUR_PROJECT_ID",
+  projectId: "awesome-places-YOUR_PROJECT_ID",
   keyFilename: "awesome-places.json"
 };
 
@@ -44,7 +44,7 @@ exports.storeImage = functions.https.onRequest((request, response) => {
             return response.status(500).json({ error: err });
           }
         );
-        const bucket = gcs.bucket("YOUR_PROJECT_ID.appspot.com");
+        const bucket = gcs.bucket("awesome-places-YOUR_PROJECT_ID.appspot.com");
         const uuid = UUID();
 
         bucket.upload(
@@ -68,7 +68,8 @@ exports.storeImage = functions.https.onRequest((request, response) => {
                   "/o/" +
                   encodeURIComponent(file.name) +
                   "?alt=media&token=" +
-                  uuid
+                  uuid,
+                imagePath: "/places/" + uuid + ".jpg"
               });
             } else {
               console.log(err);
@@ -79,7 +80,17 @@ exports.storeImage = functions.https.onRequest((request, response) => {
       })
       .catch(error => {
         console.log("Token is invalid!");
-        response.status(403).json({error: "Unauthorized"});
+        response.status(403).json({ error: "Unauthorized" });
       });
   });
 });
+
+exports.deleteImage = functions.database
+  .ref("/places/{placeId}")
+  .onDelete(event => {
+    const placeData = event.data.previous.val();
+    const imagePath = placeData.imagePath;
+
+    const bucket = gcs.bucket("awesome-places-YOUR_PROJECT_ID.appspot.com");
+    return bucket.file(imagePath).delete();
+  });
